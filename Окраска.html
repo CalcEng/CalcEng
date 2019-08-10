@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form>
+			<label for="DNK">Наружный диаметр трубы</label>
+			<input type="text" id="DNK" onkeyup="roundPipeD(DNK.value, LNK.value)"/>
+			<br />
+			<label for="LNK">Длина трубы</label>
+			<input type="text" id="LNK" onkeyup="roundPipeD(DNK.value, LNK.value)"/>
+			<table id="NKrez">
+				<caption id="NKcap"></caption>
+			</table>
+			
+		</form>
+		<div id="rez"></div>
+		<div id="name"></div>
+		<div id="area"></div>
+		<!--<script src="js/pipearea.js"></script>-->
+<script>
+	//
+	//
+	//
+	//Труба по наружному диаметру
+	function roundPipeD(d, l)
+	{
+		var lp = document.getElementById("LNK");
+		l = l.replace(/,/g, ".");
+		l = l.replace(/[^.\d]+/g,"");
+		lp.value = l;
+		if (d && l) {
+			var name,
+			area;
+			name = 'Труба Д ' + d + 'мм длиной ' + l + 'м';
+			area = roundPipe(d, l);
+			return outputResult(name, area);
+		}
+	}
+	//
+	//
+	//
+	//Площадь круглой трубы
+	function roundPipe(d, l)
+	{
+		var r, s;
+		r = Math.PI * (d / 1000);
+		s = Math.round(s * r *1000) / 1000;
+		return s;
+	}
+	//
+	//
+	//
+	//Вывод результатов на экран
+	function outputResult(n, a)
+	{
+		var r    = document.getElementById('rez'),
+		name = document.getElementById('name'),
+		area = document.getElementById('area');
+		name.innerHTML = n;
+		area.innerHTML = a + 'м<sup>2</sup>';
+	}			
+</script>
+		
+	</body>
+</html>
